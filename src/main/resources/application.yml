@@ -21,7 +21,7 @@ spring:
     #        driver-class-name: com.mysql.cj.jdbc.Driver
 
     # postgres
-    url: jdbc:postgresql://localhost:5432/board
+    url: jdbc:postgresql://localhost:5432/admin
     username: jyuka
     password: 1234
 
