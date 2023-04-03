@@ -85,6 +85,13 @@ class JpaRepositoryTest {
         userAccount.addRoleTypes(List.of(RoleType.USER, RoleType.USER));
         userAccount.removeRoleType(RoleType.ADMIN);
 
+
+        /**
+         * saveAndFlush 가 사용된 이유??
+         * @DataJpaTest 의 경우 각 메소드 단위로 롤백
+         * Jpa 입장에서 결국 롤백되기 때문에 update 실행 하지 않음
+         * update 문을 확인하고자 saveAndFlush 사용
+         */
         // When
         UserAccount updatedAccount = userAccountRepository.saveAndFlush(userAccount);
 
