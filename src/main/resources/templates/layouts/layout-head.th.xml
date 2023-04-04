@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+   fragment 선언, 기존에는 생략을 해도 잘 치환되었지만 매개변수가 필요하여 명시
+   th:replace="layout-head :: common_head(anyString, anyString)"
+   로 받은 매개 변수를 활용하여 replace 를 진행한다.
+-->
 <thlogic>
   <attr sel="#layout-head" th:fragment="common_head(title, links)" />
   <attr sel="#head-title" th:replace="${title}" />
