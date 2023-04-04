@@ -36,7 +36,7 @@ class UserAccountManagementControllerTest {
         mvc.perform(get("/management/user-accounts"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.TEXT_HTML))  // 호환되는 타입까지 매칭 : text/html;charset=UTF-8
-                .andExpect(view().name("management/user-accounts"))
+                .andExpect(view().name("management/userAccounts"))
         ;
     }
 
