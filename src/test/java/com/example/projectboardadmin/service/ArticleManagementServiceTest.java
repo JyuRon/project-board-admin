@@ -1,12 +1,10 @@
 package com.example.projectboardadmin.service;
 
-import com.example.projectboardadmin.domain.constant.RoleType;
 import com.example.projectboardadmin.dto.ArticleDto;
 import com.example.projectboardadmin.dto.UserAccountDto;
 import com.example.projectboardadmin.dto.properties.ProjectProperties;
 import com.example.projectboardadmin.dto.response.ArticleClientResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -22,7 +20,6 @@ import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
@@ -174,7 +171,6 @@ class ArticleManagementServiceTest {
         private UserAccountDto createUserAccountDto() {
             return UserAccountDto.of(
                     "jyukaTest",
-                    Set.of(RoleType.ADMIN),
                     "jyuka-test@email.com",
                     "jyuka-test",
                     "test memo"

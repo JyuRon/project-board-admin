@@ -112,7 +112,6 @@ class ArticleCommentManagementControllerTest {
     private UserAccountDto createUserAccountDto() {
         return UserAccountDto.of(
                 "jyukaTest",
-                Set.of(RoleType.ADMIN),
                 "jyuka-test@email.com",
                 "jyuka-test",
                 "test memo"
