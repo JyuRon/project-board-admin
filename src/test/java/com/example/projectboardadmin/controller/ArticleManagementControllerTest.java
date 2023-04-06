@@ -1,8 +1,6 @@
 package com.example.projectboardadmin.controller;
 
-import com.example.projectboardadmin.config.SecurityConfig;
 import com.example.projectboardadmin.config.TestSecurityConfig;
-import com.example.projectboardadmin.domain.constant.RoleType;
 import com.example.projectboardadmin.dto.ArticleDto;
 import com.example.projectboardadmin.dto.UserAccountDto;
 import com.example.projectboardadmin.service.ArticleManagementService;
@@ -13,12 +11,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Set;
 
 import static org.mockito.BDDMockito.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
@@ -43,6 +41,7 @@ class ArticleManagementControllerTest {
         this.mvc = mvc;
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[view][GET] 게시글 관리 페이지 - 정상 호출")
     @Test
     void givenNothing_whenRequestingArticleManagementView_thenReturnsArticleManagementView() throws Exception {
@@ -59,6 +58,7 @@ class ArticleManagementControllerTest {
         then(articleManagementService).should().getArticles();
     }
 
+    @WithMockUser(username = "tester", roles = "USER")
     @DisplayName("[data][GET] 게시글 1개 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingArticle_thenReturnsArticle() throws Exception {
@@ -78,6 +78,7 @@ class ArticleManagementControllerTest {
         then(articleManagementService).should().getArticle(articleId);
     }
 
+    @WithMockUser(username = "tester", roles = "MANAGER")
     @DisplayName("[view][POST] 게시글 삭제 - 정상 호출")
     @Test
     void givenArticleId_whenRequestingDeletion_thenRedirectsToArticleManagementView() throws Exception {
