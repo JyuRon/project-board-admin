@@ -32,7 +32,7 @@ public record BoardAdminPrincipal(
                 password,
                 roleTypes.stream()
                         .map(RoleType::getRoleName)
-                        .map(SimpleGrantedAuthority::new)
+                        .map(SimpleGrantedAuthority::new)// SecurityContextHolder 에는 ROLE_ 이 prefix 로 붙는다.
                         .collect(Collectors.toUnmodifiableSet())
                 ,
                 email,
