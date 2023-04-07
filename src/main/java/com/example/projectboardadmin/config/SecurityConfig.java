@@ -42,11 +42,10 @@ public class SecurityConfig{
                 )
                 .formLogin(withDefaults())
                 .logout(logout -> logout.logoutSuccessUrl("/"))
-                .oauth2Login(oAuth -> oAuth
-                        .userInfoEndpoint(userInfo -> userInfo
-                                .userService(oAuth2UserService)
-                        )
-                )
+                .oauth2Login(withDefaults())
+                .csrf(withDefaults())
+                //TODO : 현재 로그인 페이지로 가서 세션을 가져와야 csrf 토큰이 생성되야 페이지 렌더링이 가능하다. 이를 임시적으로 해결하고자 사용
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .build();
     }
 
