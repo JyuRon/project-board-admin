@@ -18,10 +18,7 @@ public class ArticleManagementController {
     private final ArticleManagementService articleManagementService;
 
     @GetMapping
-    public String articles(
-            @PageableDefault(size = 10, sort = "createdAt", direction = Sort.Direction.DESC) Pageable pageable,
-            Model model
-    ) {
+    public String articles(Model model) {
 
         model.addAttribute("articles", articleManagementService
                 .getArticles().stream()
