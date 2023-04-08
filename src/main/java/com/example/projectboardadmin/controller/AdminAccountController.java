@@ -1,6 +1,7 @@
 package com.example.projectboardadmin.controller;
 
 import com.example.projectboardadmin.dto.response.AdminAccountResponse;
+import com.example.projectboardadmin.service.AdminAccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -11,10 +12,11 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/admin/members")
 public class AdminAccountController {
 
-    @GetMapping
+    private final AdminAccountService adminAccountService;
+
+    @GetMapping("/admin/members")
     public String members(Model model) {
         return "admin/members";
     }
@@ -22,12 +24,15 @@ public class AdminAccountController {
     @ResponseBody
     @GetMapping("/api/admin/members")
     public List<AdminAccountResponse> getMembers() {
-        return List.of();
+        return adminAccountService.users().stream()
+                .map(AdminAccountResponse::from)
+                .toList();
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @ResponseBody
     @DeleteMapping("/api/admin/members/{userId}")
     public void delete(@PathVariable String userId) {
+        adminAccountService.deleteUser(userId);
     }
 }
