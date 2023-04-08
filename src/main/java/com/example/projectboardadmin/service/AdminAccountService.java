@@ -35,7 +35,7 @@ public class AdminAccountService {
             String memo
     ){
         return AdminAccountDto.from(
-                adminAccountRepository.save(AdminAccount.of(username, password, roleTypes, email, nickname, memo))
+                adminAccountRepository.save(AdminAccount.of(username, password, roleTypes, email, nickname, memo, username))
         );
     }
 
