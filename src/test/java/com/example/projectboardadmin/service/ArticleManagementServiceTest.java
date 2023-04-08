@@ -49,10 +49,10 @@ class ArticleManagementServiceTest {
             // Given
 
             // When
-            List<ArticleDto> result = sut.getArticles();
+            ArticleDto result = sut.getArticle(1L);
 
             // Then
-            System.out.println(result.stream().findFirst());
+            System.out.println(result);
             assertThat(result).isNotNull();
         }
 }
@@ -119,7 +119,7 @@ class ArticleManagementServiceTest {
             Long articleId = 1L;
             ArticleDto expectedArticle = createArticleDto("게시판", "글");
             server
-                    .expect(requestTo(projectProperties.board().url() + "/api/articles/" + articleId))
+                    .expect(requestTo(projectProperties.board().url() + "/api/articles/" + articleId + "?projection=withUserAccount"))
                     .andRespond(withSuccess(
                             mapper.writeValueAsString(expectedArticle),
                             MediaType.APPLICATION_JSON
