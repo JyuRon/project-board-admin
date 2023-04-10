@@ -100,3 +100,11 @@ spring:
             user-info-uri: https://kapi.kakao.com/v2/user/me # 사용자 정보를 호출할때 필요한 url(OAuth2UserService 에서 사용)
             user-name-attribute: id # 사용자 정보를 받았을 경우 response 에 있는 키워드중 식별자로 사용할 것을 지정
 
+---
+spring:
+  config.activate.on-profile: heroku
+  datasource.url: ${JAWSDB_URL}
+  jpa.hibernate.ddl-auto: create
+
+project.board.url: ${PROJECT_BOARD_URL}
+
